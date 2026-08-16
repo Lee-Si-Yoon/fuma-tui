@@ -1,8 +1,12 @@
-# fuma-tui
+<p align="center">
+  <img src="/public/fuma-tui-social-dark.png" alt="fuma-tui-banner" width="400" />
+</p>
 
 > The TUI-styled documentation template for your Obsidian vault.
 
-Built on Fumadocs + Next.js. Styled like a terminal. Read by AI agents.
+Built on [Fumadocs](https://fumadocs.dev) + Next.js. Styled like a terminal. Read by AI agents.
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FLee-Si-Yoon%2Ffuma-tui)
 
 ## What you get
 
@@ -51,6 +55,5 @@ Per-component specs in `specs/`:
 ---
 
 <p align="center">
-  <img src="https://github.com/fuma-nama/fumadocs/raw/dev/documents/logo.png" alt="fuma-tui sticker" width="400" />
+  <img src="https://github.com/fuma-nama/fumadocs/raw/dev/documents/logo.png" alt="Fumadocs sticker" width="400" />
 </p>
-
