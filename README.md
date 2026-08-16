@@ -1,6 +1,6 @@
-<p align="center">
-  <img src="/public/fuma-tui-social-dark.png" alt="fuma-tui-banner" width="400" />
-</p>
+<a target="_blank" rel="noopener noreferrer" href="/Lee-Si-Yoon/fuma-tui/blob/main/public/fuma-tui-social-dark.png">
+  <img src="/Lee-Si-Yoon/fuma-tui/raw/main/public/fuma-tui-social-dark.png" alt="fuma-tui banner" style="max-width: 100%;">
+</a>
 
 > The TUI-styled documentation template for your Obsidian vault.
 
@@ -54,6 +54,6 @@ Per-component specs in `specs/`:
 
 ---
 
-<p align="center">
-  <img src="https://github.com/fuma-nama/fumadocs/raw/dev/documents/logo.png" alt="Fumadocs sticker" width="400" />
-</p>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/fuma-nama/fumadocs">
+  <img src="https://github.com/fuma-nama/fumadocs/raw/dev/documents/logo.png" alt="Fumadocs sticker" style="max-width: 100%;">
+</a>
