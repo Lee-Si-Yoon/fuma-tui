@@ -1,5 +1,5 @@
-<a target="_blank" rel="noopener noreferrer" href="/Lee-Si-Yoon/fuma-tui/blob/main/public/fuma-tui-social-dark.png">
-  <img src="/Lee-Si-Yoon/fuma-tui/raw/main/public/fuma-tui-social-dark.png" alt="fuma-tui banner" style="max-width: 100%;">
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/Lee-Si-Yoon/fuma-tui/blob/main/public/fuma-tui-social-dark.png">
+  <img src="https://github.com/Lee-Si-Yoon/fuma-tui/raw/main/public/fuma-tui-social-dark.png" alt="fuma-tui banner" style="max-width: 100%;">
 </a>
 
 > The TUI-styled documentation template for your Obsidian vault.
