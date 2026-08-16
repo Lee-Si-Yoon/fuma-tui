@@ -1,0 +1,666 @@
+@import "tailwindcss";
+@import "fumadocs-ui/css/neutral.css";
+@import "fumadocs-ui/css/preset.css";
+@import "katex/dist/katex.min.css";
+
+@import "fumadocs-obsidian/css/preset.css";
+
+/*
+ * Terminal/TUI aesthetic — pixelated fonts, block cursors, dashed borders,
+ * scanline overlay, zero rounding. Accent color is injected from
+ * site.config.ts via accentThemeVars() in app/layout.tsx, so all
+ * accent-derived values here reference the CSS variables:
+ *   --accent, --accent-dim, --accent-muted,
+ *   --accent-r / --accent-g / --accent-b (for rgb(r g b / a) syntax)
+ *
+ * To change the accent color, edit siteConfig.accentColor in site.config.ts.
+ * No CSS edits needed.
+ */
+
+:root {
+	--font-mono:
+		"JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo,
+		Consolas, monospace;
+	--font-pixel: "VT323", "Press Start 2P", monospace;
+
+	/* Cursor — dark theme (default) */
+	--cursor-default: url("/cursor-plus.svg") 12 12, default;
+	--cursor-pointer: url("/cursor-plus.svg") 12 12, pointer;
+	--cursor-text: url("/cursor-text.svg") 8 12, text;
+}
+
+/* ─── Dark theme (default) ─── */
+.dark {
+	--terminal-fg: var(--accent);
+	--terminal-fg-dim: var(--accent-dim);
+	--terminal-fg-muted: var(--accent-muted);
+	--terminal-border-dashed: rgb(
+		var(--accent-r) var(--accent-g) var(--accent-b) /
+		0.35
+	);
+	--terminal-border-solid: rgb(
+		var(--accent-r) var(--accent-g) var(--accent-b) /
+		0.45
+	);
+
+	--color-fd-background: #121620;
+	--color-fd-foreground: #d1d5db;
+	--color-fd-muted: #1a1f2e;
+	--color-fd-muted-foreground: #6b7280;
+	--color-fd-popover: #1a1f2e;
+	--color-fd-popover-foreground: #d1d5db;
+	--color-fd-card: #1a1f2e;
+	--color-fd-card-foreground: #d1d5db;
+	--color-fd-border: rgb(
+		var(--accent-r) var(--accent-g) var(--accent-b) /
+		0.15
+	);
+	--color-fd-primary: var(--accent);
+	--color-fd-primary-foreground: #0a0d12;
+	--color-fd-secondary: #1e2433;
+	--color-fd-secondary-foreground: #d1d5db;
+	--color-fd-accent: rgb(
+		var(--accent-r) var(--accent-g) var(--accent-b) /
+		0.08
+	);
+	--color-fd-accent-foreground: var(--accent);
+	--color-fd-ring: var(--accent);
+	--color-fd-overlay: rgba(0, 0, 0, 0.6);
+
+	--color-fd-info: #89b4fa;
+	--color-fd-warning: #f9e2af;
+	--color-fd-error: #f38ba8;
+	--color-fd-success: var(--accent);
+	--color-fd-idea: #f5c2e7;
+
+	--prose-fg: #b0b6bf;
+	--prose-bg-code: rgb(var(--accent-r) var(--accent-g) var(--accent-b) / 0.06);
+	--prose-bg-pre: #0a0d12;
+	--sidebar-bg: #0d1018;
+	--scrollbar-track: #0a0d12;
+	--scrollbar-thumb: rgb(var(--accent-r) var(--accent-g) var(--accent-b) / 0.2);
+	--scrollbar-thumb-hover: rgb(
+		var(--accent-r) var(--accent-g) var(--accent-b) /
+		0.4
+	);
+}
+
+/* ─── Light theme ─── */
+.light {
+	--terminal-fg: var(--accent);
+	--terminal-fg-dim: rgb(var(--accent-r) var(--accent-g) var(--accent-b) / 0.8);
+	--terminal-fg-muted: rgb(
+		var(--accent-r) var(--accent-g) var(--accent-b) /
+		0.6
+	);
+	--terminal-border-dashed: rgb(
+		var(--accent-r) var(--accent-g) var(--accent-b) /
+		0.4
+	);
+	--terminal-border-solid: rgb(
+		var(--accent-r) var(--accent-g) var(--accent-b) /
+		0.5
+	);
+
+	--color-fd-background: #ffffff;
+	--color-fd-foreground: #1a1d24;
+	--color-fd-muted: #f0f2f6;
+	--color-fd-muted-foreground: #6b7280;
+	--color-fd-popover: #ffffff;
+	--color-fd-popover-foreground: #1a1d24;
+	--color-fd-card: #f0f2f6;
+	--color-fd-card-foreground: #1a1d24;
+	--color-fd-border: rgb(
+		var(--accent-r) var(--accent-g) var(--accent-b) /
+		0.18
+	);
+	--color-fd-primary: var(--accent);
+	--color-fd-primary-foreground: #ffffff;
+	--color-fd-secondary: #e5e8ee;
+	--color-fd-secondary-foreground: #1a1d24;
+	--color-fd-accent: rgb(
+		var(--accent-r) var(--accent-g) var(--accent-b) /
+		0.06
+	);
+	--color-fd-accent-foreground: var(--accent);
+	--color-fd-ring: var(--accent);
+	--color-fd-overlay: rgba(0, 0, 0, 0.3);
+
+	--color-fd-info: #2563eb;
+	--color-fd-warning: #d97706;
+	--color-fd-error: #dc2626;
+	--color-fd-success: var(--accent);
+	--color-fd-idea: #c026d3;
+
+	--prose-fg: #3a3f4a;
+	--prose-bg-code: rgb(var(--accent-r) var(--accent-g) var(--accent-b) / 0.04);
+	--prose-bg-pre: #f0f2f6;
+	--sidebar-bg: #f5f6f9;
+	--scrollbar-track: #f0f2f6;
+	--scrollbar-thumb: rgb(
+		var(--accent-r) var(--accent-g) var(--accent-b) /
+		0.15
+	);
+	--scrollbar-thumb-hover: rgb(
+		var(--accent-r) var(--accent-g) var(--accent-b) /
+		0.3
+	);
+
+	/* Cursor — light theme overrides */
+	--cursor-default: url("/cursor-plus-light.svg") 12 12, default;
+	--cursor-pointer: url("/cursor-plus-light.svg") 12 12, pointer;
+	--cursor-text: url("/cursor-text-light.svg") 8 12, text;
+}
+
+html {
+	background-color: var(--color-fd-background);
+	color: var(--color-fd-foreground);
+	font-family: var(--font-mono);
+}
+
+.dark html {
+	color-scheme: dark;
+}
+
+.light html {
+	color-scheme: light;
+}
+
+body {
+	margin: 0;
+	background-color: inherit;
+	color: inherit;
+}
+
+/* ═══════════════════════════════════════════
+   TUI Cursor — custom SVG, accent-colored
+   Dark fill in dark theme, white fill in light theme.
+   ═══════════════════════════════════════════ */
+
+body {
+	cursor: var(--cursor-default);
+}
+
+/* Links/buttons: pointer cursor */
+a,
+button,
+[role="button"],
+[role="link"],
+summary,
+[tabindex],
+select,
+option {
+	cursor: var(--cursor-pointer);
+}
+
+/* Text inputs: I-beam style text cursor */
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="password"],
+textarea,
+[contenteditable] {
+	cursor: var(--cursor-text);
+}
+
+/* Block text cursor for inputs */
+input,
+textarea {
+	caret-color: var(--terminal-fg);
+}
+
+/* ═══════════════════════════════════════════
+   Zero rounding — enforce globally
+   ═══════════════════════════════════════════ */
+
+* {
+	border-radius: 0 !important;
+}
+
+:root {
+	--radius: 0;
+}
+
+/* ═══════════════════════════════════════════
+   Pixelated image rendering
+   ═══════════════════════════════════════════ */
+
+img,
+canvas,
+svg {
+	image-rendering: pixelated;
+}
+
+/* ═══════════════════════════════════════════
+   Headings — pixelated font, TUI style
+   ═══════════════════════════════════════════ */
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+	font-family: var(--font-pixel);
+	font-weight: 400;
+	color: var(--terminal-fg);
+	letter-spacing: 0.02em;
+}
+
+.prose h1 {
+	font-size: clamp(1.75rem, 1.45rem + 1.48vw, 2.75rem);
+	letter-spacing: 0.04em;
+	/* Terminal prompt prefix */
+	&::before {
+		content: "> ";
+		color: var(--terminal-fg-muted);
+	}
+}
+
+.prose h2 {
+	font-size: clamp(1.38rem, 1.19rem + 0.93vw, 2rem);
+	letter-spacing: 0.03em;
+}
+
+.prose h3 {
+	font-size: clamp(1.12rem, 1.01rem + 0.56vw, 1.5rem);
+}
+
+/* Body text */
+.prose p {
+	color: var(--prose-fg);
+	line-height: 1.7;
+	font-family: var(--font-mono);
+	font-size: 0.95rem;
+}
+
+/* ═══════════════════════════════════════════
+   Links — TUI style
+   ═══════════════════════════════════════════ */
+
+.prose a {
+	color: var(--terminal-fg);
+	text-decoration: none;
+	border-bottom: 1px dashed var(--terminal-border-dashed);
+}
+
+.prose a:hover {
+	border-bottom: 1px solid var(--terminal-fg);
+	text-decoration: none;
+}
+
+/* Internal wikilinks */
+.prose a[href^="/docs/"] {
+	border-bottom: 1px dashed transparent;
+}
+
+.prose a[href^="/docs/"]:hover {
+	border-bottom-color: var(--terminal-fg);
+}
+
+/* External links */
+.prose a[href^="http"]:not([href*="localhost"])::after {
+	content: " \2197";
+	font-size: 0.85em;
+	opacity: 0.6;
+}
+
+/* ═══════════════════════════════════════════
+   Code blocks — terminal window style
+   ═══════════════════════════════════════════ */
+
+/* Reset Fumadocs CodeBlock figure wrapper — don't double-border */
+.prose figure {
+	background: transparent !important;
+	border: none !important;
+	padding: 0 !important;
+}
+
+.prose code {
+	font-family: var(--font-mono);
+	color: var(--terminal-fg-dim);
+	background-color: var(--prose-bg-code);
+	padding: 0.1em 0.3em;
+}
+
+pre {
+	font-family: var(--font-mono);
+	background-color: var(--prose-bg-pre) !important;
+	border: 2px solid var(--terminal-border-solid);
+}
+
+pre code {
+	background-color: transparent;
+	color: var(--terminal-fg-dim);
+}
+
+/* ═══════════════════════════════════════════
+   Sidebar — TUI panel with dashed border
+   ═══════════════════════════════════════════ */
+
+#nd-sidebar {
+	background-color: var(--sidebar-bg);
+	border-right: 2px dashed var(--terminal-border-dashed);
+	font-family: var(--font-mono);
+}
+
+/* Brand row: center the logo vertically */
+#nd-sidebar > div.flex.flex-col > div.flex {
+	margin-bottom: 0.75rem;
+	align-items: center;
+}
+
+#nd-sidebar > div.flex.flex-col > div.flex > button {
+	margin-bottom: 0 !important;
+}
+
+/*
+ * When sidebar is collapsed, move the reopen panel to top-right
+ * so it doesn't overlap the breadcrumb.
+ */
+[data-sidebar-panel] {
+	inset-inline-start: auto !important;
+	inset-inline-end: 1rem !important;
+	top: 1rem !important;
+	padding: 0.5rem !important;
+	border-color: var(--terminal-border-solid) !important;
+	box-shadow:
+		rgb(var(--accent-r) var(--accent-g) var(--accent-b) / 0.25) 0 1px 3px,
+		rgb(var(--accent-r) var(--accent-g) var(--accent-b) / 0.15) 0 2px 6px,
+		rgb(var(--accent-r) var(--accent-g) var(--accent-b) / 0.1) 0 4px 12px,
+		rgb(var(--accent-r) var(--accent-g) var(--accent-b) / 0.06) 0 8px 24px !important;
+	transition: box-shadow 0.25s ease-out !important;
+}
+
+[data-sidebar-panel]:hover {
+	box-shadow:
+		rgb(var(--accent-r) var(--accent-g) var(--accent-b) / 0.4) 0 1px 3px,
+		rgb(var(--accent-r) var(--accent-g) var(--accent-b) / 0.25) 0 2px 6px,
+		rgb(var(--accent-r) var(--accent-g) var(--accent-b) / 0.15) 0 4px 12px,
+		rgb(var(--accent-r) var(--accent-g) var(--accent-b) / 0.1) 0 8px 24px !important;
+}
+
+/* Sidebar links — monospace, TUI arrow prefix on hover */
+#nd-sidebar a {
+	font-family: var(--font-mono);
+}
+
+#nd-sidebar a:hover {
+	color: var(--terminal-fg);
+}
+
+/* ═══════════════════════════════════════════
+   Search bar — terminal input style
+   ═══════════════════════════════════════════ */
+
+[data-search],
+[data-search-full] {
+	border: 2px solid var(--terminal-border-solid) !important;
+	font-family: var(--font-mono) !important;
+}
+
+[data-search]:focus,
+[data-search-full]:focus {
+	border-color: var(--terminal-fg) !important;
+	outline: none;
+}
+
+/* ═══════════════════════════════════════════
+   Selection — block highlight
+   ═══════════════════════════════════════════ */
+
+::selection {
+	background-color: var(--terminal-fg);
+	color: var(--color-fd-primary-foreground);
+}
+
+/* ═══════════════════════════════════════════
+   Scrollbar — thin TUI style
+   ═══════════════════════════════════════════ */
+
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--scrollbar-thumb);
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--scrollbar-thumb-hover);
+}
+
+/* ═══════════════════════════════════════════
+   Frontmatter — terminal box
+   ═══════════════════════════════════════════ */
+
+.fd-frontmatter {
+	border: 2px dashed var(--terminal-border-dashed);
+	background-color: var(--prose-bg-pre);
+	color: var(--terminal-fg-dim);
+	font-family: var(--font-mono);
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+/* Neighbour nav — dashed top border */
+.border-fd-border {
+	border-color: var(--terminal-border-dashed);
+}
+
+/* ═══════════════════════════════════════════
+   Mermaid tooltip — prevent phantom scroll
+   Mermaid renders div.mermaidTooltip as an absolute-positioned child of
+   <body>, placed at the bottom of the page. Even with opacity:0, this
+   inflates document.scrollHeight and causes a phantom scrollbar.
+   Pin it to the viewport so it never contributes to scroll height.
+   ═══════════════════════════════════════════ */
+
+.mermaidTooltip {
+	position: fixed !important;
+	top: 0 !important;
+	left: 0 !important;
+}
+
+/* ═══════════════════════════════════════════
+   Fumadocs UI overrides
+   ═══════════════════════════════════════════ */
+
+/* Remove fixed max-width and center alignment on article content */
+#nd-page {
+	max-width: none !important;
+	margin-inline: 0 !important;
+}
+
+/* Hide the TOC placeholder so it doesn't reserve grid space */
+#nd-toc-placeholder {
+	display: none !important;
+}
+
+/* Override grid: sidebar pinned to left edge, content fills to right edge.
+   Column 1 (left spacer) = 0 → sidebar starts at x=0
+   Column 3 (main) = 1fr → content fills remaining width
+   Column 5 (right spacer) = 0 → content reaches right edge */
+#nd-docs-layout {
+	--fd-toc-width: 0px !important;
+	grid-template-columns: 0 var(--fd-sidebar-col) minmax(0, 1fr) 0 0 !important;
+}
+
+/* Widen gap between sidebar and content on desktop */
+@media (min-width: 768px) {
+	#nd-page {
+		padding-left: 2.5rem;
+	}
+}
+
+/* ═══════════════════════════════════════════
+   Blinking cursor animation — terminal block
+   ═══════════════════════════════════════════ */
+
+@keyframes tui-blink {
+	0%,
+	49% {
+		opacity: 1;
+	}
+	50%,
+	100% {
+		opacity: 0;
+	}
+}
+
+.tui-cursor::after {
+	content: "_";
+	color: var(--terminal-fg);
+	animation: tui-blink 1s steps(1) infinite;
+}
+
+/* ═══════════════════════════════════════════
+   CRT scanline overlay — subtle
+   ═══════════════════════════════════════════ */
+
+body::before {
+	content: "";
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	z-index: 9999;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.03) 50%, transparent 50%);
+	background-size: 100% 3px;
+}
+
+.dark body::before {
+	background-image: linear-gradient(
+		rgb(var(--accent-r) var(--accent-g) var(--accent-b) / 0.06) 50%,
+		transparent 50%
+	);
+}
+
+/* ═══════════════════════════════════════════
+   Blockquote — TUI box with left bar
+   ═══════════════════════════════════════════ */
+
+.prose blockquote {
+	border-left: 2px solid var(--terminal-border-solid);
+	background-color: var(--prose-bg-code);
+	font-family: var(--font-mono);
+}
+
+/* ═══════════════════════════════════════════
+   Tables — TUI grid style
+   ═══════════════════════════════════════════ */
+
+.prose table {
+	font-family: var(--font-mono);
+	font-size: 0.9rem;
+	border-collapse: collapse;
+}
+
+.prose th {
+	border-bottom: 2px solid var(--terminal-border-solid);
+	font-family: var(--font-pixel);
+	font-weight: 400;
+	font-size: clamp(0.94rem, 0.88rem + 0.28vw, 1.12rem);
+	letter-spacing: 0.03em;
+	color: var(--terminal-fg);
+	text-align: left;
+	padding: 0.6em 0.8em;
+}
+
+.prose td {
+	border: 1px dashed var(--terminal-border-dashed);
+	padding: 0.4em 0.8em;
+}
+
+/* ═══════════════════════════════════════════
+   Horizontal rule — dashed TUI separator
+   ═══════════════════════════════════════════ */
+
+.prose hr {
+	border: none;
+	border-top: 2px dashed var(--terminal-border-dashed);
+}
+
+/* ═══════════════════════════════════════════
+   List markers — TUI style
+   ═══════════════════════════════════════════ */
+
+.prose ul {
+	list-style-type: none;
+}
+
+.prose ul > li {
+	position: relative;
+	padding-left: 1.5em;
+}
+
+.prose ul > li::before {
+	content: "-";
+	color: var(--terminal-fg-muted);
+	position: absolute;
+	left: 0;
+	font-family: var(--font-mono);
+}
+
+.prose ol {
+	list-style-type: none;
+	counter-reset: tui-counter;
+}
+
+.prose ol > li {
+	counter-increment: tui-counter;
+	position: relative;
+	padding-left: 2.5em;
+}
+
+.prose ol > li::before {
+	content: "[" counter(tui-counter) "]";
+	color: var(--terminal-fg-muted);
+	position: absolute;
+	left: 0;
+	font-family: var(--font-mono);
+}
+
+/* ═══════════════════════════════════════════
+   Themed DecryptedText
+   ═══════════════════════════════════════════ */
+
+.themed-decrypted-revealed {
+	color: var(--decrypted-revealed-color);
+	font-family: var(--font-pixel);
+}
+
+.themed-decrypted-encrypted {
+	color: var(--decrypted-encrypted-color);
+	font-family: var(--font-pixel);
+}
+
+/* ═══════════════════════════════════════════
+   Fumadocs cards/buttons — TUI borders
+   ═══════════════════════════════════════════ */
+
+.fd-card,
+[class*="fd-card"] {
+	background-color: var(--color-fd-card) !important;
+}
+
+button[class*="fd"],
+a[class*="fd"] {
+	font-family: var(--font-mono) !important;
+}
+
+/* ═══════════════════════════════════════════
+   Focus outlines — TUI dashed ring
+   ═══════════════════════════════════════════ */
+
+*:focus-visible {
+	outline: 1px dashed var(--terminal-fg);
+	outline-offset: 2px;
+}

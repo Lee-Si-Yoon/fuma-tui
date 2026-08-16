@@ -1,0 +1,6 @@
+extends: spelling
+message: "'%s' may be misspelled. Correct the spelling or formatting, or add it to the vocabulary."
+level: error
+filters:
+  # Skipped (case-insensitive).
+  - '^[Aa][Pp][Ii]s?$'

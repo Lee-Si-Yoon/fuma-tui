@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Replace with your favicon. Used as the browser tab icon via metadata.icons in app/layout.tsx. -->
+  <rect width="32" height="32" fill="#121620" />
+  <rect x="8" y="8" width="16" height="16" fill="none" stroke="#0095ff" stroke-width="2" />
+  <circle cx="16" cy="16" r="4" fill="#0095ff" />
+</svg>

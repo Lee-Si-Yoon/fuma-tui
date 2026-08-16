@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="128" height="128">
+  <!-- Replace with your brand mark/symbol. This shows on the home page, centered over the PixelBlast background. -->
+  <rect x="12" y="12" width="40" height="40" fill="none" stroke="currentColor" stroke-width="3" />
+  <circle cx="32" cy="32" r="8" fill="currentColor" />
+</svg>

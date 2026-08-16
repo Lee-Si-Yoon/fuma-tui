@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "skills": {
+    "glossary-authoring": {
+      "source": "./skills/glossary-authoring",
+      "sourceType": "local",
+      "computedHash": "9582e6dbd771ef4196288a849a491238c1c0bc94888ef4b5273353558191327e"
+    },
+    "json-canvas": {
+      "source": "./skills/json-canvas",
+      "sourceType": "local",
+      "computedHash": "56cbac74a93e4fba97f4d44bccfdeaae89e545b223f47df392c7705e01e6c543"
+    },
+    "obsidian-bases": {
+      "source": "./skills/obsidian-bases",
+      "sourceType": "local",
+      "computedHash": "65db029661f38daadc8b8eb755bd7b96011336f49bdc11e966ec7fd157d8f125"
+    },
+    "obsidian-markdown": {
+      "source": "./skills/obsidian-markdown",
+      "sourceType": "local",
+      "computedHash": "0f47297035d7824e7bf0f1984e8145a59a123e2258b5d54c9ac9642f9f77e177"
+    }
+  }
+}

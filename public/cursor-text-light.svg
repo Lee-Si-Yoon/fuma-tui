@@ -1,0 +1,21 @@
+<svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g filter="url(#filter0_d_440_744)">
+    <mask id="path-1-outside-1_440_744" maskUnits="userSpaceOnUse" x="3" y="2" width="10" height="18" fill="black">
+      <rect fill="white" x="3" y="2" width="10" height="18"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M7 4H9V18H7V4ZM9 3H12V5H9V3ZM9 17H12V19H9V17ZM4 3H7V5H4V3ZM4 17H7V19H4V17Z"/>
+    </mask>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M7 4H9V18H7V4ZM9 3H12V5H9V3ZM9 17H12V19H9V17ZM4 3H7V5H4V3ZM4 17H7V19H4V17Z" fill="#ffffff"/>
+    <path d="M9 4H10V3H9V4ZM9 18V19H10V18H9ZM7 18H6V19H7V18ZM12 3H13V2H12V3ZM12 5V6H13V5H12ZM9 5H8V6H9V5ZM12 17H13V16H12V17ZM12 19V20H13V19H12ZM9 19H8V20H9V19ZM7 3H8V2H7V3ZM7 5V6H8V5H7ZM4 5H3V6H4V5ZM7 17H8V16H7V17ZM7 19V20H8V19H7ZM4 19H3V20H4V19ZM7 5H9V3H7V5ZM8 4V18H10V4H8ZM9 17H7V19H9V17ZM8 18V4H6V18H8ZM9 4H12V2H9V4ZM11 3V5H13V3H11ZM12 4H9V6H12V4ZM10 5V3H8V5H10ZM9 18H12V16H9V18ZM11 17V19H13V17H11ZM12 18H9V20H12V18ZM10 19V17H8V19H10ZM4 4H7V2H4V4ZM6 3V5H8V3H6ZM7 4H4V6H7V4ZM5 5V3H3V5H5ZM4 18H7V16H4V18ZM6 17V19H8V17H6ZM7 18H4V20H7V18ZM5 19V17H3V19H5Z" fill="#0095ff" mask="url(#path-1-outside-1_440_744)"/>
+  </g>
+  <defs>
+    <filter id="filter0_d_440_744" x="0" y="0" width="16" height="24" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="1"/>
+      <feGaussianBlur stdDeviation="1.5"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_440_744"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_440_744" result="shape"/>
+    </filter>
+  </defs>
+</svg>

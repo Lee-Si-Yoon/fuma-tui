@@ -1,0 +1,15 @@
+allowBuilds:
+  esbuild: true
+  sharp: true
+minimumReleaseAgeExclude:
+  - '@rumdl/cli-darwin-arm64@0.2.54'
+  - '@rumdl/cli-darwin-x64@0.2.54'
+  - '@rumdl/cli-linux-arm64-musl@0.2.54'
+  - '@rumdl/cli-linux-arm64@0.2.54'
+  - '@rumdl/cli-linux-x64-musl@0.2.54'
+  - '@rumdl/cli-linux-x64@0.2.54'
+  - '@rumdl/cli-win32-x64@0.2.54'
+  - rumdl@0.2.54
+  - react-dom@19.3.0-canary-bfb7a768-20260811
+  - react@19.3.0-canary-bfb7a768-20260811
+  - scheduler@0.28.0-canary-bfb7a768-20260811
