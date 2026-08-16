@@ -6,7 +6,11 @@ import ThemedClickSpark from "@/components/themed-click-spark"
 import { accentThemeVars, siteConfig } from "@/site.config"
 
 export const metadata = {
-	title: siteConfig.name,
+	title: {
+		default: siteConfig.name,
+		/** Child pages returning a string title get `"Page Title | Site Name"`. */
+		template: `%s | ${siteConfig.name}`,
+	},
 	description: siteConfig.description,
 	metadataBase: new URL(
 		process.env.VERCEL_PROJECT_PRODUCTION_URL

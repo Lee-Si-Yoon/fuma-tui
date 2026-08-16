@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 212 48" width="212" height="48" role="img" aria-label="fuma-tui">
+  
+  <path class="s" d="M4 14L16 24L4 34" fill="none" stroke="#38BDF8" stroke-width="4.5" stroke-linecap="square"></path>
+  <rect class="f" x="20" y="30" width="15" height="4.5" fill="#38BDF8"></rect>
+  <text class="w" x="50" y="24" dominant-baseline="central" font-family="&#39;JetBrains Mono&#39;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="32" font-weight="700" letter-spacing="-0.6" fill="#101418">fuma-tui</text>
+</svg>

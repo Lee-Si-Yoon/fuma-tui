@@ -11,8 +11,14 @@ type Props = Omit<ComponentProps<typeof PixelBlast>, "color"> & {
 	darkColor?: string
 	/** Pixel color in light mode */
 	lightColor?: string
-	/** Inline SVG markup for the centered brand mark. fill must be currentColor. */
+	/** Inline SVG markup for the centered brand mark (dark-mode variant). */
 	logoMark?: string | null
+	/**
+	 * Inline SVG markup for the centered brand mark in light mode.
+	 * Falls back to `logoMark` when null/undefined so single-SVG setups
+	 * keep working without extra config.
+	 */
+	logoMarkLight?: string | null
 	/** Alt text for the brand mark. */
 	logoMarkAlt?: string
 }
@@ -21,6 +27,7 @@ export default function ThemedPixelBlast({
 	darkColor,
 	lightColor,
 	logoMark,
+	logoMarkLight,
 	logoMarkAlt,
 	...rest
 }: Props) {
@@ -38,6 +45,9 @@ export default function ThemedPixelBlast({
 		? siteConfig.theme.pixelOpacityLight
 		: siteConfig.theme.pixelOpacityDark
 	const pixelColor = (isLight ? lightColor : darkColor) ?? siteConfig.accentColor
+	// Pick the brand mark variant for the active theme. Before mount we
+	// render the dark SVG (matches next-themes' SSR default) to avoid FOUC.
+	const activeLogo = isLight ? (logoMarkLight ?? logoMark) : logoMark
 	const logoColor = isLight
 		? siteConfig.theme.logoColorLight
 		: siteConfig.theme.logoColorDark
@@ -51,7 +61,7 @@ export default function ThemedPixelBlast({
 				<PixelBlast color={pixelColor} {...rest} />
 			</div>
 			{/* Centered brand mark — inline SVG from siteConfig.logoMark.src */}
-			{logoMark && (
+			{activeLogo && (
 				<div
 					className="pointer-events-none absolute inset-0 flex items-center justify-center"
 					style={{ color: logoColor }}
@@ -63,8 +73,9 @@ export default function ThemedPixelBlast({
 						}}
 						role="img"
 						aria-label={logoMarkAlt}
-						// dangerouslySetInnerHTML: SVG loaded at build time from public/, fill replaced with currentColor
-						dangerouslySetInnerHTML={{ __html: logoMark }}
+						// dangerouslySetInnerHTML: SVG loaded at build time from public/,
+						// fill attributes preserved as-is so multi-color logos work.
+						dangerouslySetInnerHTML={{ __html: activeLogo }}
 					/>
 				</div>
 			)}

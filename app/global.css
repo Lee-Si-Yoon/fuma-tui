@@ -355,6 +355,18 @@ pre code {
 }
 
 /*
+ * Theme-aware sidebar logo swap. Default state (no .light class yet)
+ * shows the dark variant — this matches next-themes' SSR default
+ * (<html class="dark">), so there is no FOUC. When .light is active
+ * on <html>, the light variant is shown instead. If srcLight is null
+ * / unset, only the dark variant is rendered; nothing breaks.
+ */
+.logo-dark { display: block; }
+.logo-light { display: none; }
+.light .logo-dark { display: none; }
+.light .logo-light { display: block; }
+
+/*
  * When sidebar is collapsed, move the reopen panel to top-right
  * so it doesn't overlap the breadcrumb.
  */

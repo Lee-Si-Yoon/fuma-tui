@@ -182,7 +182,7 @@ Client wrapper that reads `resolvedTheme` from `next-themes` and passes theme-ap
 | dark | `#ffffff` | — |
 | light | — | `#2A62DB` |
 
-Also renders a centered brand logo (inline SVG from `public/f.svg` paths) recolored per theme: white in dark mode, brand `#2A62DB` in light mode.
+Also renders a centered brand mark (inline SVG from `siteConfig.logoMark.src`, optional `srcLight`). The dark variant is shown until the client resolves the theme (no FOUC); the light variant is swapped in when `resolvedTheme === "light"` and `srcLight` is set. Brand mark colors are entirely driven by the SVG source — use explicit hex for fixed colors or `fill="currentColor"` to inherit the container `color` (set to `theme.logoColorDark` / `theme.logoColorLight`).
 
 ### DecryptedText (`components/react-bits/decrypted-text.tsx`)
 
@@ -229,11 +229,11 @@ Theme-aware wrapper around `BorderGlow`. Uses `next-themes` `resolvedTheme` with
 
 ### SidebarFooter (`components/sidebar-footer.tsx`)
 
-Client component rendered as `sidebar.footer` in `DocsLayout`. Wraps a promotional link inside `ThemedBorderGlow` (borderRadius 12, glowRadius 20, glowIntensity 0.8, edgeSensitivity 20, coneSpread 20). Link points to `#` (placeholder). Text: "Interested in contributing?" / "Click here to get started →".
+Client component rendered as `sidebar.footer` in `DocsLayout`. Wraps a promotional link inside `ThemedBorderGlow` (borderRadius 12, glowRadius 20, glowIntensity 0.8, edgeSensitivity 20, coneSpread 20). Text, link, and visibility are driven by `siteConfig.sidebarBanner` (`enabled`, `title`, `description`, `href`). When `href` is set, renders an `<a target="_blank">`; null renders a `<div>`. Returns `null` when `enabled` is false.
 
 ### TemplateLogo (`components/friendli-logo.tsx`)
 
-Inline SVG component rendering the default template wordmark. Uses `fill="currentColor"` so it inherits text color (`--terminal-fg`). Rendered in the sidebar nav title at `h-[2rem]`. Override by replacing `public/logo.svg` and setting `siteConfig.logo.src`.
+Inline SVG component rendering the default template wordmark. Overridden by setting `siteConfig.logo.src` — the layout renders the config-driven SVG instead. Supports `logo.srcLight` for a separate light-mode file; falls back to `src` when unset. See `TEMPLATE_SETUP.md` for the multi-file theme swap.
 
 ### FrontmatterMeta (`components/frontmatter-meta.tsx`)
 

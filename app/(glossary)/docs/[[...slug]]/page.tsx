@@ -70,6 +70,11 @@ export default async function Page({
 		const svgMark = siteConfig.logoMark?.src
 			? loadSvgMark(siteConfig.logoMark.src)
 			: null
+		// srcLight is optional — omit / null to reuse the dark SVG for both
+		// themes (useful for single-color symbols that already work everywhere).
+		const svgMarkLight = siteConfig.logoMark?.srcLight
+			? loadSvgMark(siteConfig.logoMark.srcLight)
+			: svgMark
 		return (
 			<ThemedPixelBlast
 				variant="square"
@@ -87,6 +92,7 @@ export default async function Page({
 				noiseAmount={0}
 				transparent={true}
 				logoMark={svgMark}
+				logoMarkLight={svgMarkLight}
 				logoMarkAlt={siteConfig.logoMark?.alt ?? siteConfig.name}
 			/>
 		)

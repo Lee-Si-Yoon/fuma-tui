@@ -3,9 +3,8 @@
  *
  * After cloning the template:
  * 1. Change the values below
- * 2. Replace public/logo.svg (sidebar wordmark)
- * 3. Replace public/logo-mark.svg (home page symbol)
- * 4. Replace public/favicon.svg (browser tab icon)
+ * 2. Drop your SVGs in public/ and set logo.src / logoMark.src / favicon.src
+ *    (plus optional srcLight variants for light mode)
  *
  * That's it. The accent color and all its variants (dim, muted, borders,
  * scrollbars, scanlines, box-shadows) are derived automatically from
@@ -64,16 +63,25 @@ export const siteConfig = {
 	accentColorLight: "#0095ff",
 
 	/**
-	 * Sidebar logo (wordmark). Rendered as a plain <img> in the nav title.
+	 * Sidebar logo (wordmark). Rendered inline (SVG markup injected via
+	 * dangerouslySetInnerHTML) in the nav title so it inherits CSS `color`
+	 * and supports multi-color paths (use `fill="currentColor"` for
+	 * theme-following parts, explicit hex for fixed-color parts).
 	 *
-	 * - src: path to an SVG file in public/. Set to null to use
+	 * - src: path to the dark-mode SVG file in public/. Set to null to use
 	 *   siteConfig.name as text instead.
+	 * - srcLight: optional path to a light-mode SVG. Falls back to `src`
+	 *   when null/undefined — use this only if your logo needs different
+	 *   shapes or colors per theme. The dark variant is shown during SSR
+	 *   and until the client resolves the theme (no FOUC).
 	 * - alt: alt text for screen readers.
 	 * - height: CSS height (e.g. "2rem", "32px").
 	 */
 	logo: {
 		/** Set to "/logo.svg" after replacing the file in public/. null = use siteConfig.name as text. */
-		src: null,
+		src: "/fuma-tui-logotype.svg",
+		/** Light-mode variant. Omit / set to null to reuse `src` for both themes. */
+		srcLight: "/fuma-tui-logotype-light.svg",
 		alt: "fuma-tui",
 		height: "2rem",
 	},
@@ -83,15 +91,18 @@ export const siteConfig = {
 	 * PixelBlast landing page. This is the square symbol, not the
 	 * wordmark. If null, no symbol is shown.
 	 *
-	 * - src: path to an SVG file in public/.
+	 * - src: path to the dark-mode SVG file in public/.
+	 * - srcLight: optional light-mode variant; falls back to `src`.
 	 * - alt: alt text for screen readers.
 	 * - size: CSS size for both width and height (e.g. "8rem").
 	 */
 	logoMark: {
 		/** Set to "/logo-mark.svg" after replacing the file in public/. null = hide symbol. */
-		src: null,
+		src: "/fuma-tui-symbol.svg",
+		/** Light-mode variant. Omit / set to null to reuse `src` for both themes. */
+		srcLight: "/fuma-tui-symbol-light.svg",
 		alt: "fuma-tui",
-		size: "8rem",
+		size: "24rem",
 	},
 
 	/**
@@ -100,17 +111,38 @@ export const siteConfig = {
 	 */
 	favicon: {
 		/** Set to "/favicon.svg" after replacing the file in public/. null = use app/icon.svg convention. */
-		src: null,
+		src: "/favicon.svg",
 	},
 
 	/**
 	 * Brand text for the README page's DecryptedText animation.
 	 * Set to your brand or product name. Empty string skips the animation.
 	 */
-	readmeBrandText: "",
+	readmeBrandText: "fuma-tui",
 
 	/** Brand text in the OG image bottom row (next to the book icon). */
 	ogBrandText: "fuma-tui",
+
+	/**
+	 * Sidebar banner — the ThemedBorderGlow card at the bottom of the
+	 * sidebar. Set `enabled` to false to hide it entirely.
+	 *
+	 * - enabled: show or hide the banner.
+	 * - title: bold heading shown inside the card.
+	 * - description: secondary subtext beneath the title.
+	 * - href: URL opened on click. Set to null for a non-clickable banner
+	 *   (renders a <div> instead of an <a>).
+	 */
+	sidebarBanner: {
+		/** Show or hide the sidebar banner card. */
+		enabled: true,
+		/** Bold heading shown inside the card. */
+		title: "Interested in contributing?",
+		/** Secondary subtext shown beneath the title. */
+		description: "Click here to get started →",
+		/** Link opened on click. null = non-clickable banner (no <a>). */
+		href: "https://github.com/Lee-Si-Yoon/fuma-tui",
+	},
 
 	/**
 	 * Theme palette — base backgrounds, surfaces, and text colors used by
@@ -132,7 +164,7 @@ export const siteConfig = {
 		 * PixelBlast pixel opacity per theme (0–1). Lower = more subtle.
 		 * Used by ThemedPixelBlast to derive the default pixel color.
 		 */
-		pixelOpacityDark: 0.15,
+		pixelOpacityDark: 0.2,
 		pixelOpacityLight: 0.4,
 		/** OG image background (Satori can't read CSS variables). */
 		ogBackground: "#0a0d12",

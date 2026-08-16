@@ -1,11 +1,10 @@
 ---
 name: glossary-authoring
 description: >
-  Write and edit glossary entries for the Template internal glossary.
+  Write and edit documentation entries for your vault.
   Use when creating, editing, or reviewing content in public/vault/.
-  Enforces Obsidian markdown conventions, wikilink usage, frontmatter, and
-  Template branded-term rules.
-license: Proprietary
+  Enforces Obsidian markdown conventions, wikilink usage, and frontmatter rules.
+license: MIT
 metadata:
   author: Lee-Si-Yoon
   version: "1.0"
@@ -62,14 +61,8 @@ matches the filename without `.md`.
 
 ## Branded terms
 
-Follow Template branded-term rules (enforced by Vale):
-
-- "Template" (not "Template AI", "Template-AI")
-- "Template Suite" (not "Template suite")
-- "Template Container", "Template Engine", "Template Dedicated Endpoints"
-- "Template Model APIs", "Template TCache"
-
-Run `pnpm lint:prose` to check.
+If your org has product names or spelling rules, configure Vale styles in
+`.github/styles/`. Run `pnpm lint:prose` to check.
 
 ## Linting
 

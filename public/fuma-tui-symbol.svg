@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-label="fuma-tui">
+  
+  <path class="s" d="M10 14L22 24L10 34" fill="none" stroke="#38BDF8" stroke-width="4.5" stroke-linecap="square"></path>
+  <rect class="f" x="26" y="30" width="15" height="4.5" fill="#38BDF8"></rect>
+</svg>

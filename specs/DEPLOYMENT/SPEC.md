@@ -23,13 +23,19 @@ Vercel project settings:
   "build": "next build",
   "start": "next start",
   "lint": "biome check .",
-  "lint:md": "rumdl public/vault",
+  "lint:md": "rumdl check public/vault",
   "lint:prose": "vale public/vault",
   "lint:links": "tsx scripts/lint-links.ts",
   "lint:hierarchy": "tsx scripts/lint-hierarchy.ts",
   "lint:hierarchy:fix": "tsx scripts/lint-hierarchy.ts --fix",
+  "sync:frontmatter": "tsx scripts/sync-frontmatter.ts",
+  "lint:frontmatter": "tsx scripts/lint-frontmatter.ts",
+  "lint:frontmatter:fix": "tsx scripts/lint-frontmatter.ts --fix",
+  "lint:all": "pnpm typecheck && pnpm lint && pnpm lint:md && pnpm lint:prose && pnpm lint:links && pnpm lint:hierarchy && pnpm lint:frontmatter",
   "skills:install": "tsx scripts/skills-install.ts",
   "skills:update": "tsx scripts/skills-update.ts",
+  "setup": "bash scripts/setup.sh",
+  "setup:check": "bash scripts/setup.sh --check",
   "typecheck": "tsc --noEmit"
 }
 ```

@@ -4,7 +4,9 @@ import { join } from "node:path"
 /**
  * Read an SVG file from public/ and inline it for `dangerouslySetInnerHTML`.
  *
- * - Strips width/height attributes so the container controls sizing via CSS.
+ * - Strips width/height attributes ONLY from the root <svg> tag so the
+ *   container controls sizing via CSS. Inner elements (mask rects, cursor
+ *   blocks, shapes with explicit dimensions) keep their own width/height.
  * - Injects width="100%" height="100%" on the root <svg> so it fills its parent.
  * - Preserves all fill attributes as-is. SVGs that want to follow CSS `color`
  *   should use `fill="currentColor"` in the source file itself; explicit colors
@@ -20,14 +22,20 @@ export function loadSvgMark(src: string): string | null {
 
 	try {
 		const raw = readFileSync(absPath, "utf-8")
-		return (
-			raw
-				// Strip width/height so the container controls size via CSS
-				.replace(/\swidth="[^"]*"/g, "")
-				.replace(/\sheight="[^"]*"/g, "")
-				// Ensure the svg scales to fill its container
-				.replace(/<svg/g, '<svg width="100%" height="100%"')
-		)
+		return raw
+			// Strip width/height ONLY from the root <svg> opening tag.
+			// Inner elements (mask rects, cursor blocks, etc.) must keep
+			// their own width/height for correct rendering.
+			.replace(
+				/<svg([^>]*?)\swidth="[^"]*"/g,
+				"<svg$1",
+			)
+			.replace(
+				/<svg([^>]*?)\sheight="[^"]*"/g,
+				"<svg$1",
+			)
+			// Ensure the svg scales to fill its container
+			.replace(/<svg/g, '<svg width="100%" height="100%"')
 	} catch {
 		return null
 	}

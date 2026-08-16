@@ -151,7 +151,7 @@ Rendered on the `table-of-contents` page via `<GraphView>` (see STYLING spec).
 - Full viewport height (`h-dvh`)
 
 ### Readme page (`/docs/readme`)
-- ThemedDecryptedText "Template" with `animateOn="inViewHover"`, `sequential`, `revealDirection="start"`
+- ThemedDecryptedText `siteConfig.readmeBrandText` with `animateOn="inViewHover"`, `sequential`, `revealDirection="start"`
 - FrontmatterMeta (hidden on readme)
 - Regular body content
 

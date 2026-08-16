@@ -9,7 +9,7 @@ A `skills/` directory at repo root containing agent skills for authoring and mai
 ```
 skills/
 ├── README.md                          # Index of available skills
-├── glossary-authoring/                # Entry authoring skill (Proprietary)
+├── glossary-authoring/                # Entry authoring skill (MIT)
 │   └── SKILL.md
 ├── obsidian-markdown/                  # Obsidian Flavored Markdown (MIT, from kepano/obsidian-skills)
 │   ├── SKILL.md
