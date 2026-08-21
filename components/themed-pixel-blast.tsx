@@ -44,7 +44,8 @@ export default function ThemedPixelBlast({
 	const pixelOpacity = isLight
 		? siteConfig.theme.pixelOpacityLight
 		: siteConfig.theme.pixelOpacityDark
-	const pixelColor = (isLight ? lightColor : darkColor) ?? siteConfig.accentColor
+	const pixelColor =
+		(isLight ? lightColor : darkColor) ?? siteConfig.accentColor
 	// Pick the brand mark variant for the active theme. Before mount we
 	// render the dark SVG (matches next-themes' SSR default) to avoid FOUC.
 	const activeLogo = isLight ? (logoMarkLight ?? logoMark) : logoMark

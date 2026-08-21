@@ -43,6 +43,7 @@
 		"three": "^0.185.1",
 		"zod": "^4.4.3"
 	},
+	"license": "MIT",
 	"devDependencies": {
 		"@biomejs/biome": "^2.0.0",
 		"@tailwindcss/postcss": "^4.0.0",

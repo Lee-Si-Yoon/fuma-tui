@@ -11,9 +11,7 @@ export default function SidebarFooter() {
 	const inner = (
 		<>
 			<p className="font-medium text-fd-foreground">{title}</p>
-			{description ? (
-				<p className="mt-0.5 text-xs">{description}</p>
-			) : null}
+			{description ? <p className="mt-0.5 text-xs">{description}</p> : null}
 		</>
 	)
 

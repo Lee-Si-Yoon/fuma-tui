@@ -21,8 +21,7 @@ export const siteConfig = {
 	 * Short description used in meta tags and OG images.
 	 * Keep it to one sentence.
 	 */
-	description:
-		"The TUI-styled documentation template for your Obsidian vault.",
+	description: "The TUI-styled documentation template for your Obsidian vault.",
 
 	/**
 	 * GitHub repo owner. Used to build the sidebar GitHub link
