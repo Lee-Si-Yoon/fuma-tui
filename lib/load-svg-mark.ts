@@ -22,20 +22,16 @@ export function loadSvgMark(src: string): string | null {
 
 	try {
 		const raw = readFileSync(absPath, "utf-8")
-		return raw
-			// Strip width/height ONLY from the root <svg> opening tag.
-			// Inner elements (mask rects, cursor blocks, etc.) must keep
-			// their own width/height for correct rendering.
-			.replace(
-				/<svg([^>]*?)\swidth="[^"]*"/g,
-				"<svg$1",
-			)
-			.replace(
-				/<svg([^>]*?)\sheight="[^"]*"/g,
-				"<svg$1",
-			)
-			// Ensure the svg scales to fill its container
-			.replace(/<svg/g, '<svg width="100%" height="100%"')
+		return (
+			raw
+				// Strip width/height ONLY from the root <svg> opening tag.
+				// Inner elements (mask rects, cursor blocks, etc.) must keep
+				// their own width/height for correct rendering.
+				.replace(/<svg([^>]*?)\swidth="[^"]*"/g, "<svg$1")
+				.replace(/<svg([^>]*?)\sheight="[^"]*"/g, "<svg$1")
+				// Ensure the svg scales to fill its container
+				.replace(/<svg/g, '<svg width="100%" height="100%"')
+		)
 	} catch {
 		return null
 	}
